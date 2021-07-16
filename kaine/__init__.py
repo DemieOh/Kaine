@@ -1,4 +1,3 @@
-import kaine.checkpoint
 import kaine.configuration
 import kaine.data
 import kaine.engine
