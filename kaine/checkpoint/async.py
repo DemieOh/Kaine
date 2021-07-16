@@ -3,8 +3,8 @@ import logging
 from torch.multiprocessing import Process, Lock
 
 
-def this_fails(foo: int):
-    return foo / 0
+def this_fails(x):
+    return x / 0  # for debugging, raise division by zero error
 
 
 def save_asynchronously(foo, lock: Lock):
@@ -17,17 +17,5 @@ def save_asynchronously(foo, lock: Lock):
         lock.release()
 
 
-def factory_fn(lock):
-    def __save(foo):
-        return Process(target=save_asynchronously, args=(foo, lock))
-    return __save
-
-
 if __name__ == '__main__':
-    lock = Lock()
-    proc = factory_fn(lock)
-
-    for idx in range(10):
-        p = proc(idx)
-        p.start()
-        # p.join()
+    pass
